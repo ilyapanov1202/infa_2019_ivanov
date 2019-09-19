@@ -80,7 +80,7 @@ polygon([(500-193, 144), (500-224, 132), (500-195, 110)])
 polygon([(500-218, 134), (500-252, 130), (500-230, 101)])
 
 #надпись
-button("PYTHON is AMAZING", 10, 15, font = ("Arial", 24, "bold"), background="#00ff00", justify = CENTER, width = 25, height = 0)
+
 
 
 
