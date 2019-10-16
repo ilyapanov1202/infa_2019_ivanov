@@ -5,10 +5,11 @@
 3_2. For hitting the colored part of the target you get 2 points
 3_3. For hitting the nearby area you get 1 point
 4. For a miss you get a penalty point
-5. Hitting a black bomb immediately leads to defeat
+5. Hitting a black bomb immediately leads to defeat, you get 10 penalty points
 6. When you get points, the target accelerates
 7. Over time the target slows down
 8. The target bounces off the walls at a random angle
+9. You have 30 sec per game
 
 Play this game and find out the truth about yourself!
 '''
@@ -37,6 +38,9 @@ l.place(relx = 0, rely = 0)
 
 l2 = Label(root, text = "penalties", bg = "black", fg = "white", font = "Arial 36", width = 10)
 l2.place(relx = 0.65, rely = 0)
+
+l3 = Label(root, bg = "black", fg = "white", font = "Arial 36", width = 4)
+l3.place(relx = 0.4, rely = 0)
 
 
 
@@ -172,7 +176,11 @@ move_x2, move_y2 = 5, 5
 move_x1, move_y1 = 3, 3
 
 def update():
-	global a2, b2, a1, b1, move_x2, move_y2, move_x1, move_y1, counter
+	global a2, b2, a1, b1, move_x2, move_y2, move_x1, move_y1, counter, timer_default, timer_on
+	timer_on = time.time()
+	l3['text'] = ''.join(str(int(30 - (timer_on - timer_default))))
+	if timer_on - timer_default > 30:
+		end_game()
 	
 	if (a2 < c2 and move_x2 < 0) or (800 - a2 < c2 and move_x2 > 0):
 		move_x2 = -move_x2 * rnd(7, 13) / 10
@@ -204,6 +212,7 @@ def end_game():
 	l2 = Label(text = "Length of your dick:" + str(counter) + "cm", font = "Arial 46 bold", height = 9, width = 22)
 	l2.place(relx=0, rely=0)
 
+timer_default = time.time()
 
 goal2 = rnd_goal()
 
